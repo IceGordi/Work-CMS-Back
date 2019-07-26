@@ -26,7 +26,7 @@ public interface EtiquetaService {
 
 	Etiqueta findByDocId(String docId);
 
-	List<Etiqueta> findByAmbitos(List<String> ambitoList);
+	List<Etiqueta> findByAmbitos(List<String> ambitoList) throws Exception;
 	
 	
 }

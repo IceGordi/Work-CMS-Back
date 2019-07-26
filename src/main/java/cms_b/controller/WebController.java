@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.couchbase.client.java.document.json.JsonObject;
+
 import org.springframework.http.HttpStatus;
 
 import cms_b.model.Etiqueta;
@@ -76,7 +79,13 @@ public class WebController {
 		  for(String s:ambitoList) {
 			  list.add(s);
 		  }
-		  return service.findByAmbitos(list);  
+		  try {
+		  return service.findByAmbitos(list);
+		  }catch(Exception e) {
+			  e.printStackTrace();
+			  logger.info("Houston we have a problem with findByAmbitos");
+			  return null;
+		  }
 	  }
 	  
 

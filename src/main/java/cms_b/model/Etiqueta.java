@@ -46,6 +46,25 @@ private static final long serialVersionUID = -3009580615528757519L;
 		this.createdDate = new Date();
 	}
 	
+	
+	
+	public Etiqueta(boolean available, String content, Date createdDate, String docId, String keyId, String id,
+			String language, Date lastModifiedDate, String tipo, List<String> pages) {
+		super();
+		this.available = available;
+		this.content = content;
+		this.createdDate = createdDate;
+		this.docId = docId;
+		this.keyId = keyId;
+		this.id = id;
+		this.language = language;
+		this.lastModifiedDate = lastModifiedDate;
+		this.tipo = tipo;
+		this.pages = pages;
+	}
+
+
+
 	public String getId() {
 		return id;
 	}

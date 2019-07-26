@@ -3,7 +3,7 @@ package cms_b.repositories;
 import java.util.List;
 
 import org.springframework.data.couchbase.core.query.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.couchbase.repository.CouchbaseRepository;
 import org.springframework.data.repository.query.Param;
 
 import cms_b.model.Etiqueta;
@@ -11,7 +11,7 @@ import cms_b.model.Etiqueta;
 
 
 
-public interface EtiquetaRepository extends CrudRepository<Etiqueta,String>{
+public interface EtiquetaRepository extends CouchbaseRepository<Etiqueta,String>,EtiquetaRepositoryCustom{
 	
 	//random N1QL Queries
 	
@@ -30,8 +30,5 @@ public interface EtiquetaRepository extends CrudRepository<Etiqueta,String>{
 	@Query("#{#n1ql.selectEntity} WHERE #{#n1ql.filter}  AND docId = $docId")
 	Etiqueta findByDocId(@Param("docId")String docId);
 	
-	
 	List<Etiqueta> deleteByKeyId(String keyId);
-	@Query("#{#n1ql.selectEntity} WHERE #{#n1ql.filter} AND $ambitoList IN pages")
-	List<Etiqueta> findByAmbitos(@Param("ambitoList")String ambitoList);
 }

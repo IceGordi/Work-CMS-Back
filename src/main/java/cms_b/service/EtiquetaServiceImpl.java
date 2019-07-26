@@ -11,8 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.couchbase.client.deps.com.fasterxml.jackson.databind.ObjectMapper;
-
 import cms_b.controller.WebController;
 import cms_b.exception.APIException;
 import cms_b.exception.ErrorType;
@@ -28,7 +26,6 @@ public class EtiquetaServiceImpl implements EtiquetaService{
 	@Autowired
 	EtiquetaRepository repo;
 
-	final ObjectMapper objectmapper = new ObjectMapper();
 	
 	protected static final Logger logger = LoggerFactory.getLogger(EtiquetaServiceImpl.class);
 	
@@ -97,17 +94,9 @@ public class EtiquetaServiceImpl implements EtiquetaService{
 	}
 
 	@Override
-	public List<Etiqueta> findByAmbitos(List<String> ambitoList) {
+	public List<Etiqueta> findByAmbitos(List<String> ambitoList) throws Exception {
 		// TODO Auto-generated method stub
-		
-		List<Etiqueta> etl = null;
-		try {
-		String arr = objectmapper.writeValueAsString(ambitoList);
-		etl = repo.findByAmbitos(arr);
-		}catch(Exception e) {
-			logger.info("Error while retrieving etiquetas with ambitos:{}",ambitoList.toString());
-		}
-		return etl;
+		return repo.fufu(ambitoList);
 	}
 
 

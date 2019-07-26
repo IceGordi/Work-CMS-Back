@@ -41,7 +41,7 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration{
 	    return couchbaseSettings.getBucketName();
 	}	
 	
-
+	
 	  @Override
 	  protected String getBucketPassword() {
 	    return couchbaseSettings.getPassword();
