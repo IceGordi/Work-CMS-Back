@@ -15,20 +15,19 @@ public interface EtiquetaRepository extends CouchbaseRepository<Etiqueta,String>
 	
 	//random N1QL Queries
 	
-	@Query("#{#n1ql.selectEntity} WHERE #{#n1ql.filter} AND tipo = 'etiqueta'")
+	@Query("#{#n1ql.selectEntity} WHERE  type = 'Etiqueta'")
 	List<Etiqueta> findAllEtiquetas();
 	
-	@Query("#{#n1ql.selectEntity} WHERE #{#n1ql.filter} AND  tipo = 'pageEtiqueta'")
-	List<Etiqueta> findAllAmbitos();
-	
-	@Query("#{#n1ql.selectEntity} WHERE #{#n1ql.filter} AND  keyId = $keyId")
+	@Query("#{#n1ql.selectEntity} WHERE type = 'Etiqueta' AND  keyId = $keyId")
 	List<Etiqueta> findByKeyId(@Param("keyId")String keyId);
 	
-	@Query("#{#n1ql.selectEntity} WHERE #{#n1ql.filter} AND id = $id")
+	@Query("#{#n1ql.selectEntity} WHERE type = 'Etiqueta' AND id = $id")
 	List<Etiqueta> findById1(@Param("id")String id);
 	
-	@Query("#{#n1ql.selectEntity} WHERE #{#n1ql.filter}  AND docId = $docId")
+	@Query("#{#n1ql.selectEntity} WHERE type = 'Etiqueta' AND docId = $docId")
 	Etiqueta findByDocId(@Param("docId")String docId);
-	
+	@Query("DELETE FROM etiquetasBucket WHERE type = 'Etiqueta' AND keyId = $keyId")
 	List<Etiqueta> deleteByKeyId(String keyId);
+	@Query("UPDATE etiquetasBucket SET available = false WHERE keyId = $keyId AND type = 'Etiqueta'")
+	List<Etiqueta> disableEtiqueta(String keyId);
 }

@@ -1,17 +1,13 @@
 package cms_b.service;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import cms_b.controller.WebController;
 import cms_b.exception.APIException;
 import cms_b.exception.ErrorType;
 import cms_b.model.Etiqueta;
@@ -42,7 +38,7 @@ public class EtiquetaServiceImpl implements EtiquetaService{
 	@Override
 	public Etiqueta update(Etiqueta etiqueta) {
 		// TODO Auto-generated method stub
-		etiqueta.setLastModifiedDate(new Date());
+		etiqueta.setModified(new Date());
 		if(repo.findByDocId(etiqueta.getDocId())==null) {
 			throw new APIException(ErrorType.ETIQUETA_NOT_FOUND);
 		}else {
@@ -68,13 +64,6 @@ public class EtiquetaServiceImpl implements EtiquetaService{
 		return repo.findAllEtiquetas();
 	}
 
-
-	@Override
-	public List<Etiqueta> findAllAmbitos() {
-		// TODO Auto-generated method stub
-		return repo.findAllAmbitos();
-	}
-
 	@Override
 	public List<Etiqueta> findById(String id) {
 		// TODO Auto-generated method stub
@@ -97,6 +86,12 @@ public class EtiquetaServiceImpl implements EtiquetaService{
 	public List<Etiqueta> findByAmbitos(List<String> ambitoList) throws Exception {
 		// TODO Auto-generated method stub
 		return repo.fufu(ambitoList);
+	}
+
+	@Override
+	public List<Etiqueta> disableEtiqueta(String keyId) {
+		// TODO Auto-generated method stub
+		return repo.disableEtiqueta(keyId);
 	}
 
 

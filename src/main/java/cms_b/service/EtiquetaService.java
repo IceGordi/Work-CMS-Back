@@ -14,7 +14,6 @@ public interface EtiquetaService {
 	
 	List<Etiqueta> findAllEtiquetas();
 
-	List<Etiqueta> findAllAmbitos();
 
 	Etiqueta update(Etiqueta etiqueta);
 
@@ -27,6 +26,8 @@ public interface EtiquetaService {
 	Etiqueta findByDocId(String docId);
 
 	List<Etiqueta> findByAmbitos(List<String> ambitoList) throws Exception;
+
+	List<Etiqueta> disableEtiqueta(String keyId);
 	
 	
 }

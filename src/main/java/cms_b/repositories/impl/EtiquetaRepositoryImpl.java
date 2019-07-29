@@ -2,24 +2,21 @@ package cms_b.repositories.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
-import org.springframework.data.couchbase.core.query.Query;
-import org.springframework.data.repository.query.Param;
+
 
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.document.json.JsonObject;
 import com.couchbase.client.java.query.AsyncN1qlQueryResult;
-import com.couchbase.client.java.query.AsyncN1qlQueryRow;
 import com.couchbase.client.java.query.N1qlParams;
 import com.couchbase.client.java.query.N1qlQuery;
 import com.couchbase.client.java.query.consistency.ScanConsistency;
 
 import cms_b.model.*;
 import cms_b.repositories.EtiquetaRepositoryCustom;
-import rx.Observable;
-
 public class EtiquetaRepositoryImpl implements EtiquetaRepositoryCustom{
 	
 	AbstractCouchbaseConfiguration acc;
@@ -36,20 +33,23 @@ public class EtiquetaRepositoryImpl implements EtiquetaRepositoryCustom{
 			queryEnd+=" and $s"+index+" in pages";
 			index++;
 		}
-		String queryString = "select * from etiquetasBucket where type='cms_b.model.Etiqueta'" + queryEnd;
-		String queryTest = "select * from etiquetasBucket where type='cms_b.model.Etiqueta'";
-		N1qlQuery query = N1qlQuery.parameterized(queryTest, values , params);
+		String queryString = "select * from etiquetasBucket where type='Etiqueta'" + queryEnd;
+		N1qlQuery query = N1qlQuery.parameterized(queryString, values , params);
 		
 		List<Etiqueta> etl = new ArrayList<Etiqueta>();
+		etl = cbBucket.async().query(query)
+		        .flatMap(AsyncN1qlQueryResult::rows)
+		        .map(result -> {return EntityConverter.covertJsonObjectToEtiqueta(values);
+			  })
+		        .toList()
+		        .timeout(10, TimeUnit.SECONDS)
+		        .toBlocking()
+		        .single();
 		
-		etl = cbBucket
-				.async()
-					.query(query)
-					.flatMap(
-						result -> result.rows())
-						.map(row -> EtiquetaConverter.covertJsonObjectToEtiqueta(row.value().getObject("etiquetasBucket")))
-							.toList();
-
-		return etl;
+		if(etl.isEmpty()) {
+			return null;
+		} else {
+			return etl;
+		}
 	}
-}
+	}
