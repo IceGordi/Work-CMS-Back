@@ -12,10 +12,23 @@ public class Ambito extends ParentModel implements Serializable {
 	
 	@Field
 	private String type = "Ambito";
+	@Field
+	private String language = "es";
+	@Field
+	private String content;
 
 	public Ambito () {}
 	
 	public String getType() {
 		return type;
 	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
 }	

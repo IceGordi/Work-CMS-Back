@@ -1,5 +1,6 @@
 package cms_b.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +49,16 @@ public class AmbitoServiceImpl implements AmbitoService{
 		// TODO Auto-generated method stub
 		return ambrepo.disableAmbito(keyId);
 	}
+
+	@Override
+	public List<Ambito> findAmbitos(String[] keyIds) {
+		// TODO Auto-generated method stub
+		List<Ambito> list = new ArrayList<Ambito>();
+		for(String key:keyIds) {
+			list.add(ambrepo.findByKeyId(key));
+		}
+		return list;
 	
+	}
 	
 }

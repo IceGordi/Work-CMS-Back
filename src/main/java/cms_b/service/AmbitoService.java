@@ -14,4 +14,6 @@ public interface AmbitoService {
 
 	Ambito disableAmbito(String keyId);
 
+	List<Ambito> findAmbitos(String[] keyIds);
+
 }

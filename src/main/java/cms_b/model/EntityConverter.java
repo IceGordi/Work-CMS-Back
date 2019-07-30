@@ -23,6 +23,7 @@ public class EntityConverter {
 		trans.setId(json.getString("id"));
 		trans.setLanguage(json.getString("language"));
 		trans.setModified(new Date(json.getLong("modified")));
+		trans.setContent(json.getString("content"));
 		List<Ambito> ambL = new ArrayList<Ambito>();
 		for(int i = 0; i<json.getArray("pages").size();i++) {
 			ambL.add(EntityConverter.covertJsonObjectToAmbito(json.getArray("pages").getObject(i)));
@@ -38,7 +39,7 @@ public class EntityConverter {
 		trans.setDocId(json.getString("docId"));
 		trans.setKeyId(json.getString("keyId"));
 		trans.setId(json.getString("id"));
-		trans.setLanguage(json.getString("language"));
+		trans.setContent(json.getString("content"));
 		trans.setModified(new Date(json.getLong("modified")));
 		return trans;
 	  }

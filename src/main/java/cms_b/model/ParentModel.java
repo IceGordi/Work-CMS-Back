@@ -13,8 +13,6 @@ public class ParentModel {
 	@Field
 	public Date modified;
 	@Field
-	public String language;
-	@Field
 	public String keyId;
 	@Field
 	@Id
@@ -37,9 +35,7 @@ public class ParentModel {
 		return modified;
 	}
 
-	public String getLanguage() {
-		return language;
-	}
+	
 
 	public String getKeyId() {
 		return keyId;
@@ -65,9 +61,7 @@ public class ParentModel {
 		this.modified = modified;
 	}
 
-	public void setLanguage(String language) {
-		this.language = language;
-	}
+	
 
 	public void setKeyId(String keyId) {
 		this.keyId = keyId;

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.couchbase.client.java.document.json.JsonObject;
+
 import org.springframework.http.HttpStatus;
 
 import cms_b.model.Ambito;
@@ -59,6 +62,14 @@ public class WebController {
 		  logger.info("Trying to find all FAQs.");
 		  return faqService.findAllFAQ();
 	  }
+	  
+	  @GetMapping(value = "/ambito/{keyIds}")
+	  @ResponseStatus(HttpStatus.OK)
+	  public List<Ambito> findAmbitos(@PathVariable String[] keyIds){
+		  logger.info("Trying to find all ambitos.");
+		  return ambService.findAmbitos(keyIds);
+	  } 
+	  
 	  
 	  @GetMapping(value = "/etiqueta/ambitos/{ambitoList}")
 	  @ResponseStatus(HttpStatus.OK)
@@ -178,6 +189,18 @@ public class WebController {
 		  //for(Etiqueta e:etl)
 		  return faqService.disableFAQ(keyId);
 	  }
+	  
+	  
+	  @GetMapping("/languages/all")
+	  @ResponseStatus(HttpStatus.OK)
+	  public JsonObject getLangauges() {
+		  logger.info("Getting an array of langauges");
+		  List<String> list = new ArrayList<String>();
+		  list.add("es");list.add("en");list.add("de");
+		  return JsonObject.create().put("languages", list);
+	  }
+	  
+	  
 	  
 //	  @DeleteMapping("/delete/etiqueta/{keyId}")
 //	  @ResponseStatus(HttpStatus.OK)

@@ -12,7 +12,9 @@ import com.couchbase.client.java.repository.annotation.Field;
 public class FAQ extends ParentModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+		
+		@Field
+		public String language;
 		@Field
 		private String type = "FAQ";
 	  	@Field
@@ -22,6 +24,14 @@ public class FAQ extends ParentModel implements Serializable{
 			super();
 		}
 		
+		public String getLanguage() {
+			return language;
+		}
+
+		public void setLanguage(String language) {
+			this.language = language;
+		}
+
 		public String getType() {
 			return type;
 		}

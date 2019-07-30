@@ -13,8 +13,11 @@ public class Etiqueta extends ParentModel implements Serializable {
 	@Field
 	private String type = "Etiqueta";
 	@Field
+	private String content;
+	@Field
 	private List<Ambito> pages;
-	
+	@Field
+	public String language;
 	
 	public Etiqueta() {
 		super();
@@ -22,6 +25,14 @@ public class Etiqueta extends ParentModel implements Serializable {
 	
 	public String getType() {
 		return type;
+	}
+	
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public List<Ambito> getPages() {
@@ -31,6 +42,14 @@ public class Etiqueta extends ParentModel implements Serializable {
 
 	public void setPages(List<Ambito> pages) {
 		this.pages = pages;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 	
 	

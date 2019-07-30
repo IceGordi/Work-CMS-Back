@@ -30,10 +30,10 @@ public class EtiquetaRepositoryImpl implements EtiquetaRepositoryCustom{
 		int index = 0;
 		for(String s:ambitoList) {
 			values.put("s"+index,s);
-			queryEnd+=" and $s"+index+" in pages";
+			queryEnd+=" and $s"+index+" in ambito.keyId.";
 			index++;
 		}
-		String queryString = "select * from etiquetasBucket where type='Etiqueta'" + queryEnd;
+		String queryString = "select * from etiquetasBucket as d UNNEST d.pages AS ambito where d.type = 'Etiqueta'" + queryEnd;
 		N1qlQuery query = N1qlQuery.parameterized(queryString, values , params);
 		
 		List<Etiqueta> etl = new ArrayList<Etiqueta>();
