@@ -15,9 +15,6 @@ public class ParentModel {
 	@Field
 	public String keyId;
 	@Field
-	@Id
-	public String docId;
-	@Field
 	public String id;
 
 	public ParentModel() {}
@@ -41,9 +38,6 @@ public class ParentModel {
 		return keyId;
 	}
 
-	public String getDocId() {
-		return docId;
-	}
 
 	public String getId() {
 		return id;
@@ -67,9 +61,6 @@ public class ParentModel {
 		this.keyId = keyId;
 	}
 
-	public void setDocId(String docId) {
-		this.docId = docId;
-	}
 
 	public void setId(String id) {
 		this.id = id;
