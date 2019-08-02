@@ -3,6 +3,7 @@ package cms_b.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,8 @@ public class AmbitoServiceImpl implements AmbitoService{
 
 	@Override
 	public Ambito create(Ambito amb) {
-		Ambito a = ambrepo.findByDocId(amb.getDocId());
-		if(a != null) {
+		Optional<Ambito> a = ambrepo.findById(amb.getDocId());
+		if(a.isPresent()) {
 			throw new APIException(ErrorType.ETIQUETA_YA_EXISTE);
 		}else {
 			return ambrepo.save(amb);
@@ -37,7 +38,8 @@ public class AmbitoServiceImpl implements AmbitoService{
 	@Override
 	public Ambito update(Ambito etl) {
 		etl.setModified(new Date());
-		if(ambrepo.findByDocId(etl.getDocId())==null) {
+		Optional<Ambito> a = ambrepo.findById(etl.getDocId());
+		if(!a.isPresent()) {
 			throw new APIException(ErrorType.ETIQUETA_NOT_FOUND);
 		}else {
 			return ambrepo.save(etl);

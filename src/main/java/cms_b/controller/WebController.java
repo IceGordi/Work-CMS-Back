@@ -44,7 +44,7 @@ public class WebController {
 	  
 	  @Autowired
 	  private FAQService faqService;
-	  
+	  @CrossOrigin(origins="*")
 	  @GetMapping(value = "/etiqueta/all")
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<Etiqueta> findAllEtiquetas(){
@@ -58,14 +58,14 @@ public class WebController {
 		  logger.info("Trying to find all ambitos.");
 		  return ambService.findAllAmbitos();
 	  }
-	  
+	  @CrossOrigin(origins="*")
 	  @GetMapping(value = "/FAQ/all")
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<FAQ> findAllFAQ(){
 		  logger.info("Trying to find all FAQs.");
 		  return faqService.findAllFAQ();
 	  }
-	  
+	  @CrossOrigin(origins="*")
 	  @GetMapping(value = "/ambito/{keyIds}")
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<Ambito> findAmbitos(@PathVariable String[] keyIds){
@@ -73,7 +73,7 @@ public class WebController {
 		  return ambService.findAmbitos(keyIds);
 	  } 
 	  
-	  
+	  @CrossOrigin(origins="*")
 	  @GetMapping(value = "/etiqueta/ambitos/{ambitoList}")
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<Etiqueta> findByAmbitos(@PathVariable String[] ambitoList) {
@@ -92,7 +92,7 @@ public class WebController {
 	  }
 	  
 
-	  
+	  @CrossOrigin(origins="*")
 	  @PostMapping(value = "/create/etiqueta")
 	  @ResponseStatus(HttpStatus.CREATED)
 	  public List<Etiqueta> createEtiquetas (@RequestBody List<Etiqueta> list) {
@@ -103,7 +103,7 @@ public class WebController {
 		  }
 		  return addedList;
 	  }
-	  
+	  @CrossOrigin(origins="*")
 	  @PostMapping(value = "/create/ambito")
 	  @ResponseStatus(HttpStatus.CREATED)
 	  public List<Ambito> createAmbito (@RequestBody List<Ambito> list) {
@@ -114,7 +114,7 @@ public class WebController {
 		  }
 		  return addedList;
 	  }
-	  
+	  @CrossOrigin(origins="*")
 	  @PostMapping(value = "/create/faq")
 	  @ResponseStatus(HttpStatus.CREATED)
 	  public List<FAQ> createFAQ (@RequestBody List<FAQ> list) {
@@ -125,8 +125,8 @@ public class WebController {
 		  }
 		  return addedList;
 	  }
-	  
-	  @PutMapping(value = "/update/etiqueta")
+	  @CrossOrigin(origins="*")
+	  @PostMapping(value = "/update/etiqueta")
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<Etiqueta> updateEtiqueta (@RequestBody List<Etiqueta> etiqueta) {
 		  List<Etiqueta> list = new ArrayList<Etiqueta>();
@@ -139,7 +139,8 @@ public class WebController {
  		  return list;
 	  }
 	  
-	  @PutMapping(value = "/update/ambito")
+	  @CrossOrigin(origins="*")
+	  @PostMapping(value = "/update/ambito")
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<Ambito> updateAmbito (@RequestBody List<Ambito> ambito) {
 		  List<Ambito> list = new ArrayList<Ambito>();
@@ -151,8 +152,8 @@ public class WebController {
 		  }
  		  return list;
 	  }
-	  
-	  @PutMapping(value = "/update/faq")
+	  @CrossOrigin(origins="*")
+	  @PostMapping(value = "/update/faq")
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<FAQ> updateFAQ (@RequestBody List<FAQ> faq) {
 		  List<FAQ> list = new ArrayList<FAQ>();
@@ -165,7 +166,7 @@ public class WebController {
  		  return list;
 	  }
 	 
-	  
+	  @CrossOrigin(origins="*")
 	  @GetMapping("/disable/etiqueta/{keyId}")
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<Etiqueta> disableEtiqueta(@PathVariable String keyId) {
@@ -174,7 +175,7 @@ public class WebController {
 		  //for(Etiqueta e:etl)
 		  return etiService.disableEtiqueta(keyId);
 	  }
-	  
+	  @CrossOrigin(origins="*")
 	  @GetMapping("/disable/ambito/{keyId}")
 	  @ResponseStatus(HttpStatus.OK)
 	  public Ambito disableAmbito(@PathVariable String keyId) {
@@ -183,7 +184,7 @@ public class WebController {
 		  //for(Etiqueta e:etl)
 		  return ambService.disableAmbito(keyId);
 	  }
-	  
+	  @CrossOrigin(origins="*")
 	  @GetMapping("/disable/faq/{keyId}")
 	  @ResponseStatus(HttpStatus.OK)
 	  public FAQ disableFAQ(@PathVariable String keyId) {
@@ -193,7 +194,7 @@ public class WebController {
 		  return faqService.disableFAQ(keyId);
 	  }
 	  
-	  
+	  @CrossOrigin(origins="*")
 	  @GetMapping("/languages/all")
 	  @ResponseStatus(HttpStatus.OK)
 	  public JsonObject getLangauges() {
