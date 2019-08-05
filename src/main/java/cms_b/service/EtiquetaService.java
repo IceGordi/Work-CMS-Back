@@ -10,7 +10,7 @@ public interface EtiquetaService {
 
 	//List<Etiqueta> delete(String id);
 
-	List<Etiqueta> delete(String id);
+	List<Etiqueta> delete(String keyId);
 	
 	List<Etiqueta> findAllEtiquetas();
 

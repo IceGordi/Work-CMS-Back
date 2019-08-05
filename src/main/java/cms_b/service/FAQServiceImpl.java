@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import cms_b.exception.APIException;
 import cms_b.exception.ErrorType;
-import cms_b.model.Ambito;
 import cms_b.model.FAQ;
 import cms_b.repositories.FAQRepository;
 
@@ -25,7 +24,7 @@ public class FAQServiceImpl implements FAQService{
 
 	@Override
 	public FAQ create(FAQ faq) {
-		Ambito f = faqrepo.findByDocId(faq.getDocId());
+		FAQ f = faqrepo.findByDocId(faq.getDocId());
 		if(f != null) {
 			throw new APIException(ErrorType.ETIQUETA_YA_EXISTE);
 		}else {
@@ -44,7 +43,7 @@ public class FAQServiceImpl implements FAQService{
 	}
 
 	@Override
-	public FAQ disableFAQ(String keyId) {
-		return faqrepo.disableFAQ(keyId);
+	public FAQ delete(String keyId) {
+		return faqrepo.deleteByKeyId(keyId);
 	}
 }

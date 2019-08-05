@@ -12,8 +12,8 @@ public interface AmbitoService {
 
 	Ambito update(Ambito etl);
 
-	Ambito disableAmbito(String keyId);
-
 	List<Ambito> findAmbitos(String[] keyIds);
+	
+	Ambito delete(String docId);
 
 }

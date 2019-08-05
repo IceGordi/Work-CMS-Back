@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -44,6 +45,8 @@ public class WebController {
 	  
 	  @Autowired
 	  private FAQService faqService;
+	  
+	  
 	  @CrossOrigin(origins="*")
 	  @GetMapping(value = "/etiqueta/all")
 	  @ResponseStatus(HttpStatus.OK)
@@ -166,33 +169,7 @@ public class WebController {
  		  return list;
 	  }
 	 
-	  @CrossOrigin(origins="*")
-	  @GetMapping("/disable/etiqueta/{keyId}")
-	  @ResponseStatus(HttpStatus.OK)
-	  public List<Etiqueta> disableEtiqueta(@PathVariable String keyId) {
-		  logger.info("Disabling etiqueta with keyId: {}",keyId);
-		  //List<Etiqueta> etl = service.findByKeyId(keyId);
-		  //for(Etiqueta e:etl)
-		  return etiService.disableEtiqueta(keyId);
-	  }
-	  @CrossOrigin(origins="*")
-	  @GetMapping("/disable/ambito/{keyId}")
-	  @ResponseStatus(HttpStatus.OK)
-	  public Ambito disableAmbito(@PathVariable String keyId) {
-		  logger.info("Disabling ambito with keyId: {}",keyId);
-		  //List<Etiqueta> etl = service.findByKeyId(keyId);
-		  //for(Etiqueta e:etl)
-		  return ambService.disableAmbito(keyId);
-	  }
-	  @CrossOrigin(origins="*")
-	  @GetMapping("/disable/faq/{keyId}")
-	  @ResponseStatus(HttpStatus.OK)
-	  public FAQ disableFAQ(@PathVariable String keyId) {
-		  logger.info("Disabling etiqueta with keyId: {}",keyId);
-		  //List<Etiqueta> etl = service.findByKeyId(keyId);
-		  //for(Etiqueta e:etl)
-		  return faqService.disableFAQ(keyId);
-	  }
+	
 	  
 	  @CrossOrigin(origins="*")
 	  @GetMapping("/languages/all")
@@ -206,19 +183,27 @@ public class WebController {
 	  
 	  
 	  
-//	  @DeleteMapping("/delete/etiqueta/{keyId}")
-//	  @ResponseStatus(HttpStatus.OK)
-//	  public List<Etiqueta> deleteEtiqueta(@PathVariable String keyId) {
-//		  logger.info("Deleting etiqueta with keyId: {}",keyId);
-//		  //List<Etiqueta> etl = service.findByKeyId(keyId);
-//		  //for(Etiqueta e:etl)
-//		  return service.delete(keyId);
-//	  }
-//	  
-//	  @DeleteMapping("/delete/ambito/{docId}")
-//	  @ResponseStatus(HttpStatus.OK)
-//	  public List<Etiqueta> deleteAmbito(@PathVariable String docId) {
-//		  logger.info("Deleting ambito with docId: {}",docId);
-//		  return service.delete(docId);
-//	  }
+	  @DeleteMapping("/delete/etiqueta/{keyId}")
+	  @ResponseStatus(HttpStatus.OK)
+	  public List<Etiqueta> deleteEtiqueta(@PathVariable String keyId) {
+		  logger.info("Deleting etiqueta with keyId: {}",keyId);
+		  //List<Etiqueta> etl = service.findByKeyId(keyId);
+		  //for(Etiqueta e:etl)
+		  return etiService.delete(keyId);
+	  }
+	  
+	  @DeleteMapping("/delete/ambito/{keyId}")
+	  @ResponseStatus(HttpStatus.OK)
+	  public Ambito deleteAmbito(@PathVariable String keyId) {
+		  logger.info("Deleting ambito with keyId: {}",keyId);
+		  return ambService.delete(keyId);
+	  }
+	  @DeleteMapping("/delete/faq/{keyId}")
+	  @ResponseStatus(HttpStatus.OK)
+	  public FAQ deleteFAQ(@PathVariable String keyId) {
+		  logger.info("Deleting ambito with keyId: {}",keyId);
+		  return faqService.delete(keyId);
+	  } 
+	  
 }
+

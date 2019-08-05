@@ -47,12 +47,6 @@ public class AmbitoServiceImpl implements AmbitoService{
 	}
 
 	@Override
-	public Ambito disableAmbito(String keyId) {
-		// TODO Auto-generated method stub
-		return ambrepo.disableAmbito(keyId);
-	}
-
-	@Override
 	public List<Ambito> findAmbitos(String[] keyIds) {
 		// TODO Auto-generated method stub
 		List<Ambito> list = new ArrayList<Ambito>();
@@ -63,4 +57,8 @@ public class AmbitoServiceImpl implements AmbitoService{
 	
 	}
 	
+	
+	public Ambito delete(String keyId) {
+		return ambrepo.deleteByKeyId(keyId);
+	}
 }

@@ -11,7 +11,7 @@ public interface FAQService {
 	FAQ create(FAQ etl);
 
 	FAQ update(FAQ etl);
-
-	FAQ disableFAQ(String keyId);
+	
+	FAQ delete (String keyId);
 
 }
