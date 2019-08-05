@@ -14,6 +14,6 @@ public interface AmbitoService {
 
 	List<Ambito> findAmbitos(String[] keyIds);
 	
-	Ambito delete(String docId);
+	void delete(String keyId);
 
 }

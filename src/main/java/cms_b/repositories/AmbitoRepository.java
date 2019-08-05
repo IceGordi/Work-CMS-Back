@@ -12,5 +12,6 @@ public interface AmbitoRepository extends CouchbaseRepository<Ambito,String>,Amb
 	@Query("#{#n1ql.selectEntity} WHERE type = 'ambito'")
 	List<Ambito> findAllAmbitos();
 	Ambito findByKeyId(String keyId);
-	Ambito deleteByKeyId (String keyId);
+	@Query("DELETE FROM etiquetasBucket WHERE type = 'ambito' AND keyId = $keyId")
+	Ambito keyBasedDeleting(String keyId);
 }

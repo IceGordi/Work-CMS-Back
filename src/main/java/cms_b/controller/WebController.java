@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -187,22 +186,20 @@ public class WebController {
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<Etiqueta> deleteEtiqueta(@PathVariable String keyId) {
 		  logger.info("Deleting etiqueta with keyId: {}",keyId);
-		  //List<Etiqueta> etl = service.findByKeyId(keyId);
-		  //for(Etiqueta e:etl)
 		  return etiService.delete(keyId);
 	  }
 	  
-	  @DeleteMapping("/delete/ambito/{keyId}")
+	  @DeleteMapping("/delete/ambito/{docId}")
 	  @ResponseStatus(HttpStatus.OK)
-	  public Ambito deleteAmbito(@PathVariable String keyId) {
-		  logger.info("Deleting ambito with keyId: {}",keyId);
-		  return ambService.delete(keyId);
+	  public void deleteAmbito(@PathVariable String docId) {
+		  logger.info("Deleting ambito with docId: {}",docId);
+		  ambService.delete(docId);
 	  }
-	  @DeleteMapping("/delete/faq/{keyId}")
+	  @DeleteMapping("/delete/faq/{docId}")
 	  @ResponseStatus(HttpStatus.OK)
-	  public FAQ deleteFAQ(@PathVariable String keyId) {
-		  logger.info("Deleting ambito with keyId: {}",keyId);
-		  return faqService.delete(keyId);
+	  public void deleteFAQ(@PathVariable String keyId) {
+		  logger.info("Deleting faq with keyId: {}",keyId);
+		  faqService.delete(keyId);
 	  } 
 	  
 }

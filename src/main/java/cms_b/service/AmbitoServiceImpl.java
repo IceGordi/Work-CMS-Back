@@ -58,7 +58,7 @@ public class AmbitoServiceImpl implements AmbitoService{
 	}
 	
 	
-	public Ambito delete(String keyId) {
-		return ambrepo.deleteByKeyId(keyId);
+	public void delete(String keyId) {
+		ambrepo.keyBasedDeleting(keyId);
 	}
 }

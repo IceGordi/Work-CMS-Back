@@ -43,7 +43,7 @@ public class FAQServiceImpl implements FAQService{
 	}
 
 	@Override
-	public FAQ delete(String keyId) {
-		return faqrepo.deleteByKeyId(keyId);
+	public void delete(String docId) {
+		 faqrepo.deleteById(docId);
 	}
 }
