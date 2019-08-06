@@ -94,5 +94,11 @@ public class EtiquetaServiceImpl implements EtiquetaService{
 		return repo.disableEtiqueta(keyId);
 	}
 
+	@Override
+	public List<Etiqueta> findAllEtiquetasByLang(String lang) {
+		// TODO Auto-generated method stub
+		return repo.findAllEtiquetasByLang(lang);
+	}
+
 
 }

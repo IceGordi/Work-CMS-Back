@@ -29,5 +29,7 @@ public interface EtiquetaRepository extends CouchbaseRepository<Etiqueta,String>
 	@Query("DELETE FROM etiquetasBucket WHERE type = 'etiqueta' AND keyId = $keyId")
 	List<Etiqueta> deleteByKeyId(String keyId);
 	@Query("UPDATE etiquetasBucket SET available = false WHERE keyId = $keyId AND type = 'etiqueta'")
-	List<Etiqueta> disableEtiqueta(String keyId);
+	List<Etiqueta> disableEtiqueta(String keyId); 
+	@Query("#{#n1ql.selectEntity} WHERE type = 'etiqueta' AND language = $lang")
+	List<Etiqueta> findAllEtiquetasByLang(String lang);
 }

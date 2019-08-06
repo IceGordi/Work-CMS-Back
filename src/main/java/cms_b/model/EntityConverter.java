@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.document.json.JsonObject;
 
 public class EntityConverter {
@@ -15,6 +16,8 @@ public class EntityConverter {
 	
 	  public static Etiqueta covertJsonObjectToEtiqueta(JsonObject json) {
 		
+		  JsonArray n = new JsonArray();
+		  
 		Etiqueta trans = new Etiqueta();
 		trans.setAvailable(json.getBoolean("available"));
 		trans.setCreated(new Date(json.getLong("created")));
@@ -26,13 +29,13 @@ public class EntityConverter {
 		trans.setContent(json.getString("content"));
 		List<Ambito> ambL = new ArrayList<Ambito>();
 		for(int i = 0; i<json.getArray("pages").size();i++) {
-			ambL.add(EntityConverter.covertJsonObjectToAmbito(json.getArray("pages").getObject(i)));
+			ambL.add(EntityConverter.covertJsonObjectToAmbito(json.getArray("pages")get(i)));
 		}
 		logger.info("Convrter finished converting this: {}",trans.toString());
 		return trans;
 	}
 	  
-	  public static Ambito covertJsonObjectToAmbito(JsonObject json) {
+	  public static Ambito covertJsonObjectToAmbito(Object json) {
 		 Ambito trans = new Ambito();
 		trans.setAvailable(json.getBoolean("available"));
 		trans.setCreated(new Date(json.getLong("created")));

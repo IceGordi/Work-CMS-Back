@@ -53,6 +53,15 @@ public class WebController {
 		  logger.info("Trying to find all etiquetas.");
 		  return etiService.findAllEtiquetas();
 	  }
+	  
+	  @CrossOrigin(origins="*")
+	  @GetMapping(value = "/etiqueta/all/{lang}")
+	  @ResponseStatus(HttpStatus.OK)
+	  public List<Etiqueta> findAllEtiquetasByLang(@PathVariable String lang){
+		  logger.info("Trying to find all etiquetas with lang {}", lang);
+		  return etiService.findAllEtiquetasByLang(lang);
+	  }
+	  
 	  @CrossOrigin(origins="*")
 	  @GetMapping(value = "/ambito/all")
 	  @ResponseStatus(HttpStatus.OK)

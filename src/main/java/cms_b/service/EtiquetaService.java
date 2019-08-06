@@ -29,5 +29,5 @@ public interface EtiquetaService {
 
 	List<Etiqueta> disableEtiqueta(String keyId);
 	
-	
+	List<Etiqueta> findAllEtiquetasByLang(String lang);
 }

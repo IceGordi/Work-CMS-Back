@@ -30,22 +30,24 @@ public class EtiquetaRepositoryImpl implements EtiquetaRepositoryCustom{
 		int index = 0;
 		for(String s:ambitoList) {
 			values.put("s"+index,s);
-			queryEnd+=" and $s"+index+" in ambito.keyId.";
+			queryEnd+=" and (any ambito in pages satisfies ambito.keyId = $s"+index +" end) ";
 			index++;
 		}
-		String queryString = "select * from etiquetasBucket as d UNNEST d.pages AS ambito where d.type = 'Etiqueta'" + queryEnd;
+		
+		//select * from etiquetasBucket where
+		//(any ambito in pages satisfies ambito.keyId = "sad" end) and 
+		//(any ambito in pages satisfies ambito.keyId = "sadaf" end) and 
+		//(any ambito in pages satisfies ambito.keyId = "asdf" end)
+		String queryString = "select meta().id, * from etiquetasBucket where language = 'es' and type = 'etiqueta'";
 		N1qlQuery query = N1qlQuery.parameterized(queryString, values , params);
 		
 		List<Etiqueta> etl = new ArrayList<Etiqueta>();
 		etl = cbBucket.async().query(query)
-		        .flatMap(AsyncN1qlQueryResult::rows)
-		        .map(result -> {return EntityConverter.covertJsonObjectToEtiqueta(values);
-			  })
+				.flatMap(result -> result.rows()) //browse the resulting rows
+			    .map(row -> EntityConverter.covertJsonObjectToEtiqueta(row.value().getObject("etiquetasBucket"))) //extract the value of rows that were obtained 
 		        .toList()
-		        .timeout(10, TimeUnit.SECONDS)
 		        .toBlocking()
-		        .single();
-		
+		        .single();		
 		if(etl.isEmpty()) {
 			return null;
 		} else {
