@@ -38,7 +38,7 @@ public class EtiquetaRepositoryImpl implements EtiquetaRepositoryCustom{
 		//(any ambito in pages satisfies ambito.keyId = "sad" end) and 
 		//(any ambito in pages satisfies ambito.keyId = "sadaf" end) and 
 		//(any ambito in pages satisfies ambito.keyId = "asdf" end)
-		String queryString = "select meta().id, * from etiquetasBucket where language = 'es' and type = 'etiqueta'";
+		String queryString = "select meta().id, * from etiquetasBucket where language = 'es' and type = 'etiqueta'"+queryEnd;
 		N1qlQuery query = N1qlQuery.parameterized(queryString, values , params);
 		
 		List<Etiqueta> etl = new ArrayList<Etiqueta>();
