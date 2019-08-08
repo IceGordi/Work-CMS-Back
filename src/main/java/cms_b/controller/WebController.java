@@ -55,6 +55,15 @@ public class WebController {
 	  }
 	  
 	  @CrossOrigin(origins="*")
+	  @GetMapping(value = "/etiqueta/{keyId}")
+	  @ResponseStatus(HttpStatus.OK)
+	  public List<Etiqueta> findEtiquetaById(@PathVariable String keyId){
+		  logger.info("Trying to find all etiquetas.");
+		  return etiService.findByKeyId(keyId);
+	  }
+	  
+	  
+	  @CrossOrigin(origins="*")
 	  @GetMapping(value = "/etiqueta/all/{lang}")
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<Etiqueta> findAllEtiquetasByLang(@PathVariable String lang){
@@ -70,7 +79,7 @@ public class WebController {
 		  return ambService.findAllAmbitos();
 	  }
 	  @CrossOrigin(origins="*")
-	  @GetMapping(value = "/FAQ/all")
+	  @GetMapping(value = "/faq/all")
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<FAQ> findAllFAQ(){
 		  logger.info("Trying to find all FAQs.");
@@ -210,6 +219,30 @@ public class WebController {
 		  logger.info("Deleting faq with keyId: {}",keyId);
 		  faqService.delete(keyId);
 	  } 
+	  
+	  @CrossOrigin(origins="*")
+	  @GetMapping(value = "/faq//keyId/{keyId}")
+	  @ResponseStatus(HttpStatus.OK)
+	  public List<FAQ> findFAQByKeyId(@PathVariable String keyId){
+		  logger.info("Trying to find all etiquetas.");
+		  return faqService.findByKeyId(keyId);
+	  }
+	  
+	  @CrossOrigin(origins="*")
+	  @GetMapping(value = "/faq/id/{id}")
+	  @ResponseStatus(HttpStatus.OK)
+	  public FAQ findFAQById(@PathVariable String id){
+		  logger.info("Trying to find all etiquetas.");
+		  return faqService.findById(id);
+	  }
+	  
+	  @CrossOrigin(origins="*")
+	  @GetMapping(value = "/faq/all/{lang}")
+	  @ResponseStatus(HttpStatus.OK)
+	  public List<FAQ> findAllFAQByLang(@PathVariable String lang){
+		  logger.info("Trying to find all FAQs.");
+		  return faqService.findAllFAQByLang(lang);
+	  }
 	  
 }
 

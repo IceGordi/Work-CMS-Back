@@ -4,7 +4,6 @@ public class FAQQuestionAnswer {
 
 		private String question;
 		private String answer;
-		private int order;
 		private boolean available;
 		
 		
@@ -19,12 +18,6 @@ public class FAQQuestionAnswer {
 		}
 		public void setAnswer(String answer) {
 			this.answer = answer;
-		}
-		public int getOrder() {
-			return order;
-		}
-		public void setOrder(int order) {
-			this.order = order;
 		}
 		public boolean isAvailable() {
 			return available;

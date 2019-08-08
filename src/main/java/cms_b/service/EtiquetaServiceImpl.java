@@ -39,7 +39,7 @@ public class EtiquetaServiceImpl implements EtiquetaService{
 	public Etiqueta update(Etiqueta etiqueta) {
 		// TODO Auto-generated method stub
 		etiqueta.setModified(new Date());
-		if(repo.findByDocId(etiqueta.getDocId())==null) {
+		if(repo.findByKeyId(etiqueta.getKeyId())==null) {
 			throw new APIException(ErrorType.ETIQUETA_NOT_FOUND);
 		}else {
 			return repo.save(etiqueta);

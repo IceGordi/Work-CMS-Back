@@ -35,7 +35,7 @@ public class FAQServiceImpl implements FAQService{
 	@Override
 	public FAQ update(FAQ etl) {
 		etl.setModified(new Date());
-		if(faqrepo.findByDocId(etl.getDocId())==null) {
+		if(faqrepo.findByMyId(etl.getId())==null) {
 			throw new APIException(ErrorType.ETIQUETA_NOT_FOUND);
 		}else {
 			return faqrepo.save(etl);
@@ -45,5 +45,23 @@ public class FAQServiceImpl implements FAQService{
 	@Override
 	public void delete(String docId) {
 		 faqrepo.deleteById(docId);
+	}
+
+	@Override
+	public List<FAQ> findByKeyId(String keyId) {
+		// TODO Auto-generated method stub
+		return faqrepo.findByKeyId(keyId);
+	}
+
+	@Override
+	public FAQ findById(String id) {
+		// TODO Auto-generated method stub
+		return faqrepo.findByMyId(id);
+	}
+
+	@Override
+	public List<FAQ> findAllFAQByLang(String lang) {
+		// TODO Auto-generated method stub
+		return faqrepo.findAllFAQByLang(lang);
 	}
 }
